@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#aee3ff"/>
+      <stop offset="1" stop-color="#e8f7ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <circle cx="680" cy="80" r="38" fill="#ffd94d"/>
+  <rect y="385" width="800" height="65" fill="#8fce7a"/>
+  <rect y="385" width="800" height="26" fill="#9a9a9a"/>
+
+  <!-- clouds -->
+  <g fill="#ffffff" opacity="0.9">
+    <g>
+      <ellipse cx="0" cy="0" rx="46" ry="18"/>
+      <ellipse cx="30" cy="-10" rx="30" ry="15"/>
+      <animateTransform attributeName="transform" type="translate" from="880 90" to="-140 90" dur="16s" repeatCount="indefinite"/>
+    </g>
+    <g>
+      <ellipse cx="0" cy="0" rx="36" ry="14"/>
+      <ellipse cx="24" cy="-8" rx="24" ry="12"/>
+      <animateTransform attributeName="transform" type="translate" from="880 160" to="-140 160" dur="23s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- road dashes -->
+  <g fill="#ffffff">
+    <g>
+      <rect x="0" y="396" width="40" height="5" rx="2"/>
+      <rect x="80" y="396" width="40" height="5" rx="2"/>
+      <rect x="160" y="396" width="40" height="5" rx="2"/>
+      <rect x="240" y="396" width="40" height="5" rx="2"/>
+      <rect x="320" y="396" width="40" height="5" rx="2"/>
+      <rect x="400" y="396" width="40" height="5" rx="2"/>
+      <rect x="480" y="396" width="40" height="5" rx="2"/>
+      <rect x="560" y="396" width="40" height="5" rx="2"/>
+      <rect x="640" y="396" width="40" height="5" rx="2"/>
+      <rect x="720" y="396" width="40" height="5" rx="2"/>
+      <rect x="800" y="396" width="40" height="5" rx="2"/>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-80 0" dur="0.5s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- wheel shadows -->
+  <ellipse cx="300" cy="388" rx="52" ry="6" fill="#000" opacity="0.15"/>
+  <ellipse cx="500" cy="388" rx="52" ry="6" fill="#000" opacity="0.15"/>
+
+  <!-- ===== bicycle ===== -->
+  <!-- rear wheel -->
+  <g stroke="#333" fill="none">
+    <circle cx="300" cy="340" r="45" stroke-width="6"/>
+    <circle cx="300" cy="340" r="4" fill="#333"/>
+    <g stroke-width="2" stroke="#666">
+      <line x1="300" y1="298" x2="300" y2="382"/>
+      <line x1="258" y1="340" x2="342" y2="340"/>
+      <line x1="270" y1="310" x2="330" y2="370"/>
+      <line x1="330" y1="310" x2="270" y2="370"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 300 340" to="360 300 340" dur="1s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <!-- front wheel -->
+  <g stroke="#333" fill="none">
+    <circle cx="500" cy="340" r="45" stroke-width="6"/>
+    <circle cx="500" cy="340" r="4" fill="#333"/>
+    <g stroke-width="2" stroke="#666">
+      <line x1="500" y1="298" x2="500" y2="382"/>
+      <line x1="458" y1="340" x2="542" y2="340"/>
+      <line x1="470" y1="310" x2="530" y2="370"/>
+      <line x1="530" y1="310" x2="470" y2="370"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 500 340" to="360 500 340" dur="1s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- frame -->
+  <g stroke="#e74c3c" stroke-width="7" stroke-linecap="round" fill="none">
+    <line x1="390" y1="342" x2="346" y2="264"/>   <!-- seat tube -->
+    <line x1="390" y1="342" x2="300" y2="342"/>   <!-- chain stay -->
+    <line x1="346" y1="264" x2="300" y2="342"/>   <!-- seat stay -->
+    <line x1="390" y1="342" x2="466" y2="278"/>   <!-- down tube -->
+    <line x1="352" y1="272" x2="462" y2="276"/>   <!-- top tube -->
+    <line x1="466" y1="278" x2="500" y2="342"/>   <!-- fork -->
+    <line x1="466" y1="278" x2="460" y2="248"/>   <!-- stem -->
+    <path d="M460,248 Q448,240 442,248" stroke-width="6"/> <!-- handlebar -->
+  </g>
+  <!-- seat -->
+  <rect x="326" y="254" width="38" height="7" rx="3" fill="#4a2c17"/>
+  <line x1="345" y1="254" x2="346" y2="264" stroke="#4a2c17" stroke-width="5"/>
+
+  <!-- chain -->
+  <g stroke="#555" stroke-width="2.5">
+    <line x1="390" y1="333" x2="300" y2="336"/>
+    <line x1="390" y1="351" x2="300" y2="348"/>
+  </g>
+  <circle cx="300" cy="342" r="6" fill="#555"/>
+  <circle cx="390" cy="342" r="10" fill="none" stroke="#555" stroke-width="3"/>
+
+  <!-- far leg (behind body) -->
+  <path fill="none" stroke="#f39c12" stroke-width="9" stroke-linecap="round">
+    <animate attributeName="d" dur="1s" repeatCount="indefinite" keyTimes="0;0.25;0.5;0.75;1" values="
+      M352,262 Q382,306 412,342 l 13 2;
+      M352,262 Q379,317 390,364 l 13 2;
+      M352,262 Q368,306 368,342 l 13 2;
+      M352,262 Q379,295 390,320 l 13 2;
+      M352,262 Q382,306 412,342 l 13 2"/>
+  </path>
+
+  <!-- crank + pedals -->
+  <g>
+    <line x1="390" y1="342" x2="412" y2="342" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+    <line x1="390" y1="342" x2="368" y2="342" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+    <g transform="translate(412,342)">
+      <rect x="-9" y="-3.5" width="18" height="7" rx="3" fill="#222"/>
+      <animateTransform attributeName="transform" type="rotate" additive="sum" from="0" to="-360" dur="1s" repeatCount="indefinite"/>
+    </g>
+    <g transform="translate(368,342)">
+      <rect x="-9" y="-3.5" width="18" height="7" rx="3" fill="#222"/>
+      <animateTransform attributeName="transform" type="rotate" additive="sum" from="0" to="-360" dur="1s" repeatCount="indefinite"/>
+    </g>
+    <animateTransform attributeName="transform" type="rotate" from="0 390 342" to="360 390 342" dur="1s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- ===== pelican (bobs gently) ===== -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 2.5; 0 0" dur="0.5s" repeatCount="indefinite"/>
+
+    <!-- tail -->
+    <path d="M296,228 L268,210 L288,244 Z" fill="#e9e4d8"/>
+    <!-- body -->
+    <ellipse cx="336" cy="240" rx="50" ry="30" fill="#f4f1ea" transform="rotate(-12 336 240)"/>
+    <!-- neck -->
+    <path d="M362,220 Q396,212 398,168" fill="none" stroke="#f4f1ea" stroke-width="15" stroke-linecap="round"/>
+    <!-- arm-wing reaching handlebar -->
+    <path d="M356,224 Q402,228 450,248" fill="none" stroke="#e9e4d8" stroke-width="13" stroke-linecap="round">
+      <animateTransform attributeName="transform" type="rotate" values="0 356 224; 4 356 224; 0 356 224" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <!-- head -->
+    <circle cx="404" cy="152" r="17" fill="#f4f1ea"/>
+    <!-- crest feather -->
+    <path d="M394,138 Q386,128 378,132 Q388,136 392,142 Z" fill="#e9e4d8"/>
+    <!-- upper beak -->
+    <path d="M414,144 Q444,142 470,156 Q444,160 414,154 Z" fill="#ff9f43"/>
+    <!-- pouch -->
+    <path d="M414,154 Q434,192 468,158 Q442,162 414,154 Z" fill="#f5821f"/>
+    <!-- eye -->
+    <ellipse cx="409" cy="146" rx="3" ry="3" fill="#222">
+      <animate attributeName="ry" values="3;3;0.3;3;3" keyTimes="0;0.9;0.93;0.96;1" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    <!-- scarf -->
+    <path d="M388,178 Q380,192 366,196" fill="none" stroke="#e74c3c" stroke-width="7" stroke-linecap="round">
+      <animate attributeName="d" values="M388,178 Q380,192 366,196; M388,178 Q382,196 364,202; M388,178 Q380,192 366,196" dur="0.8s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="390" cy="176" r="6" fill="#e74c3c"/>
+
+    <!-- near leg -->
+    <path fill="none" stroke="#ffb84d" stroke-width="9" stroke-linecap="round">
+      <animate attributeName="d" dur="1s" repeatCount="indefinite" keyTimes="0;0.25;0.5;0.75;1" values="
+        M352,262 Q368,306 368,342 l 13 2;
+        M352,262 Q379,295 390,320 l 13 2;
+        M352,262 Q382,306 412,342 l 13 2;
+        M352,262 Q379,317 390,364 l 13 2;
+        M352,262 Q368,306 368,342 l 13 2"/>
+    </path>
+  </g>
+
+  <!-- speed lines -->
+  <g stroke="#9ed3f0" stroke-width="3" stroke-linecap="round">
+    <line x1="240" y1="250" x2="200" y2="250"><animate attributeName="opacity" values="1;0;1" dur="0.6s" repeatCount="indefinite"/></line>
+    <line x1="228" y1="285" x2="180" y2="285"><animate attributeName="opacity" values="0;1;0" dur="0.6s" repeatCount="indefinite"/></line>
+    <line x1="240" y1="320" x2="205" y2="320"><animate attributeName="opacity" values="1;0;1" dur="0.45s" repeatCount="indefinite"/></line>
+  </g>
+</svg>

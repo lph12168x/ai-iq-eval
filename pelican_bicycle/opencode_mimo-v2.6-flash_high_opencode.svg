@@ -1,0 +1,382 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <title>Pelican riding a bicycle</title>
+  <desc>Animated pelican pedalling a bicycle through a scrolling landscape.</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bde6ff"/>
+      <stop offset="1" stop-color="#eaf8ff"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#646d7c"/>
+      <stop offset="1" stop-color="#4b5361"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.55" stop-color="#ffe47a" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffe47a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- rolling cloud, reused to build a periodic 900px layer -->
+    <g id="cloud" fill="#ffffff">
+      <ellipse cx="0" cy="0" rx="46" ry="23"/>
+      <circle cx="-22" cy="-13" r="21"/>
+      <circle cx="10" cy="-19" r="26"/>
+      <circle cx="38" cy="-6" r="17"/>
+    </g>
+    <g id="cloudset">
+      <use href="#cloud" transform="translate(70,72)"/>
+      <use href="#cloud" transform="translate(330,124) scale(0.65)"/>
+      <use href="#cloud" transform="translate(600,62) scale(1.15)"/>
+      <use href="#cloud" transform="translate(866,146) scale(0.55)"/>
+    </g>
+
+    <!-- roadside vegetation, reused to build a periodic 800px layer -->
+    <g id="tree">
+      <rect x="-6" y="-42" width="12" height="42" rx="3" fill="#8a5a2b"/>
+      <circle cx="0" cy="-58" r="25" fill="#4faf5f"/>
+      <circle cx="-18" cy="-44" r="17" fill="#4faf5f"/>
+      <circle cx="18" cy="-44" r="17" fill="#4faf5f"/>
+      <circle cx="4" cy="-70" r="14" fill="#63c472"/>
+    </g>
+    <g id="bush">
+      <ellipse cx="0" cy="-11" rx="27" ry="14" fill="#3f9a52"/>
+      <ellipse cx="-14" cy="-7" rx="16" ry="10" fill="#4faf5f"/>
+      <ellipse cx="14" cy="-8" rx="15" ry="9" fill="#4faf5f"/>
+    </g>
+    <g id="treeline">
+      <use href="#tree" transform="translate(50,450)"/>
+      <use href="#bush" transform="translate(142,450)"/>
+      <use href="#tree" transform="translate(236,450) scale(0.8)"/>
+      <use href="#tree" transform="translate(402,450) scale(1.1)"/>
+      <use href="#bush" transform="translate(492,450)"/>
+      <use href="#tree" transform="translate(576,450) scale(0.75)"/>
+      <use href="#bush" transform="translate(662,450)"/>
+      <use href="#tree" transform="translate(746,450) scale(0.95)"/>
+    </g>
+
+    <!-- bicycle frame tubing -->
+    <g id="framepaths" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 400,400 L 352,274"/>
+      <path d="M 352,274 L 498,262"/>
+      <path d="M 400,400 L 514,298"/>
+      <path d="M 498,262 L 518,306"/>
+      <path d="M 280,380 L 400,400"/>
+      <path d="M 280,380 L 354,278"/>
+      <path d="M 516,304 L 540,380"/>
+    </g>
+
+    <!-- wheel, drawn around local origin -->
+    <g id="wheelart" fill="none" stroke-linecap="round">
+      <circle r="65.5" stroke="#2f2a3a" stroke-width="9"/>
+      <circle r="54" stroke="#cfd6e0" stroke-width="5"/>
+      <g stroke="#aab4c4" stroke-width="2.4">
+        <line x1="-52" y1="0" x2="52" y2="0"/>
+        <line x1="-26" y1="-45" x2="26" y2="45"/>
+        <line x1="26" y1="-45" x2="-26" y2="45"/>
+        <line x1="0" y1="-52" x2="0" y2="52"/>
+        <line x1="-45" y1="-26" x2="45" y2="26"/>
+        <line x1="-45" y1="26" x2="45" y2="-26"/>
+      </g>
+      <circle r="7" fill="#64748b" stroke="#2f2a3a" stroke-width="3"/>
+      <rect x="-2.5" y="-58" width="5" height="13" rx="2" fill="#e63946" stroke="none"/>
+    </g>
+  </defs>
+
+  <!-- ============================ scenery ============================ -->
+  <rect width="800" height="500" fill="url(#sky)"/>
+
+  <!-- sun -->
+  <g>
+    <circle cx="105" cy="80" r="72" fill="url(#glow)"/>
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                        from="0 105 80" to="360 105 80" dur="40s"/>
+      <g stroke="#ffcf3d" stroke-width="7" stroke-linecap="round">
+        <line x1="105" y1="24" x2="105" y2="6"/>
+        <line x1="105" y1="136" x2="105" y2="154"/>
+        <line x1="49" y1="80" x2="31" y2="80"/>
+        <line x1="161" y1="80" x2="179" y2="80"/>
+        <line x1="65" y1="40" x2="52" y2="27"/>
+        <line x1="145" y1="120" x2="158" y2="133"/>
+        <line x1="145" y1="40" x2="158" y2="27"/>
+        <line x1="65" y1="120" x2="52" y2="133"/>
+      </g>
+    </g>
+    <circle cx="105" cy="80" r="40" fill="#ffd84d"/>
+    <circle cx="93" cy="70" r="11" fill="#ffe98a" opacity="0.8"/>
+  </g>
+
+  <!-- clouds: two copies of a 900px periodic layer, drifting left -->
+  <g opacity="0.95">
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                        values="0,0; -900,0" dur="26s"/>
+      <use href="#cloudset"/>
+    </g>
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                        values="0,0; -900,0" dur="26s"/>
+      <use href="#cloudset" transform="translate(900,0)"/>
+    </g>
+  </g>
+
+  <!-- distant hills -->
+  <path d="M 0,450 L 0,412 Q 90,366 190,404 Q 280,438 360,398 Q 452,354 560,400
+           Q 658,442 730,404 Q 770,384 800,398 L 800,450 Z" fill="#8ad39b"/>
+  <path d="M 0,450 L 0,430 Q 80,404 168,428 Q 258,452 344,424 Q 432,396 520,428
+           Q 612,460 700,428 Q 756,408 800,424 L 800,450 Z" fill="#63bf7b"/>
+
+  <!-- roadside trees: two copies of an 800px periodic layer -->
+  <g>
+    <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                      values="0,0; -800,0" dur="4s"/>
+    <use href="#treeline"/>
+  </g>
+  <g>
+    <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                      values="0,0; -800,0" dur="4s"/>
+    <use href="#treeline" transform="translate(800,0)"/>
+  </g>
+
+  <!-- road -->
+  <rect x="0" y="450" width="800" height="50" fill="url(#road)"/>
+  <rect x="0" y="450" width="800" height="3" fill="#8b95a5"/>
+  <g fill="#eef2f7">
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                        values="0,0; -160,0" dur="0.35s"/>
+      <rect x="-160" y="470" width="70" height="8" rx="4"/>
+      <rect x="0"    y="470" width="70" height="8" rx="4"/>
+      <rect x="160"  y="470" width="70" height="8" rx="4"/>
+      <rect x="320"  y="470" width="70" height="8" rx="4"/>
+      <rect x="480"  y="470" width="70" height="8" rx="4"/>
+      <rect x="640"  y="470" width="70" height="8" rx="4"/>
+      <rect x="800"  y="470" width="70" height="8" rx="4"/>
+      <rect x="960"  y="470" width="70" height="8" rx="4"/>
+    </g>
+  </g>
+
+  <!-- speed lines behind the rider -->
+  <g stroke="#7ab3e3" stroke-width="6" stroke-linecap="round" fill="none">
+    <line x1="0" y1="168" x2="72" y2="168">
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                        values="152,0; -82,0" dur="0.55s" begin="-0.1s"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.2;0.75;1"
+               dur="0.55s" begin="-0.1s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="232" x2="52" y2="232">
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                        values="152,0; -82,0" dur="0.55s" begin="-0.28s"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.2;0.75;1"
+               dur="0.55s" begin="-0.28s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="336" x2="86" y2="336">
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+                        values="152,0; -82,0" dur="0.55s" begin="-0.45s"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.2;0.75;1"
+               dur="0.55s" begin="-0.45s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <ellipse cx="410" cy="449" rx="186" ry="7" fill="#000000" opacity="0.17"/>
+
+  <!-- ======================= far side leg + crank ======================= -->
+  <g>
+    <!-- outer: thigh, pivot at hip -->
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+        calcMode="linear" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1"
+        dur="0.8s"
+        values="0 385 250;7.4 385 250;10.4 385 250;8 385 250;0.4 385 250;-9.8 385 250;-19.8 385 250;-28.3 385 250;-35.1 385 250;-40.4 385 250;-44.2 385 250;-45.7 385 250;-42.3 385 250;-33.2 385 250;-21.7 385 250;-10.1 385 250;0 385 250"/>
+      <line x1="385" y1="250" x2="310.3" y2="308.7" stroke="#8a5a2b" stroke-width="37" stroke-linecap="round"/>
+      <line x1="385" y1="250" x2="310.3" y2="308.7" stroke="#cf8436" stroke-width="30" stroke-linecap="round"/>
+      <!-- inner: shin, pivot at knee -->
+      <g>
+        <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+          calcMode="linear" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1"
+          dur="0.8s"
+          values="0 310.3 308.7;-13.9 310.3 308.7;-25.2 310.3 308.7;-32.4 310.3 308.7;-33.9 310.3 308.7;-29.4 310.3 308.7;-19.9 310.3 308.7;-7.1 310.3 308.7;7.6 310.3 308.7;23.1 310.3 308.7;37.9 310.3 308.7;49.6 310.3 308.7;52.5 310.3 308.7;44.3 310.3 308.7;30.5 310.3 308.7;15.2 310.3 308.7;0 310.3 308.7"/>
+        <line x1="310.3" y1="308.7" x2="358" y2="400" stroke="#8a5a2b" stroke-width="31" stroke-linecap="round"/>
+        <line x1="310.3" y1="308.7" x2="358" y2="400" stroke="#cf8436" stroke-width="24" stroke-linecap="round"/>
+        <!-- foot, counter-rotated to stay level -->
+        <g>
+          <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+            calcMode="linear" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1"
+            dur="0.8s"
+            values="0 358 400;6.5 358 400;14.8 358 400;24.4 358 400;33.5 358 400;39.2 358 400;39.7 358 400;35.4 358 400;27.4 358 400;17.3 358 400;6.3 358 400;-3.9 358 400;-10.2 358 400;-11.1 358 400;-8.9 358 400;-5.1 358 400;0 358 400"/>
+          <path d="M 346,398 C 342,387 349,379 359,379 L 382,383 C 391,385 391,396 382,399 L 353,404 Z"
+                fill="#cf8436" stroke="#2f2a3a" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M 371,382 L 378,399 M 359,380 L 365,401" fill="none" stroke="#2f2a3a" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- far crank arm -->
+    <g transform="translate(400,400)">
+      <g>
+        <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                          from="0 0 0" to="360 0 0" dur="0.8s"/>
+        <line x1="0" y1="0" x2="-42" y2="0" stroke="#475569" stroke-width="10" stroke-linecap="round"/>
+        <g transform="translate(-42,0)">
+          <g>
+            <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                              from="0 0 0" to="-360 0 0" dur="0.8s"/>
+            <rect x="-14" y="2" width="28" height="9" rx="3" fill="#334155" stroke="#2f2a3a" stroke-width="2"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============================== wheels ============================== -->
+  <g transform="translate(280,380)">
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                        from="0 0 0" to="360 0 0" dur="0.4s"/>
+      <use href="#wheelart"/>
+    </g>
+  </g>
+  <g transform="translate(540,380)">
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                        from="0 0 0" to="360 0 0" dur="0.4s"/>
+      <use href="#wheelart"/>
+    </g>
+  </g>
+
+  <!-- ============================== frame =============================== -->
+  <use href="#framepaths" stroke="#2f2a3a" stroke-width="18"/>
+  <use href="#framepaths" stroke="#e63946" stroke-width="11"/>
+
+  <!-- handlebar + grip -->
+  <path d="M 498,266 L 501,236 L 497,214" fill="none"
+        stroke="#1f2937" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 501,240 L 497,214" fill="none" stroke="#111827"
+        stroke-width="17" stroke-linecap="round"/>
+
+  <!-- saddle -->
+  <path d="M 326,270 C 344,258 392,256 420,264 C 400,276 350,280 326,270 Z"
+        fill="#2f2a3a"/>
+  <path d="M 330,266 C 348,258 388,257 412,263" fill="none" stroke="#4b5563" stroke-width="3"/>
+
+  <!-- =============================== chain ============================== -->
+  <path d="M 400.8,368 L 280.4,365 A 15,15 0 0 0 275.5,394.3 L 390.4,430.5 A 32,32 0 1 0 400.8,368 Z"
+        fill="none" stroke="#cbd5e1" stroke-width="6" stroke-dasharray="9 7">
+    <animate attributeName="stroke-dashoffset" values="0;-192" dur="0.8s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- ========================= chainring + near crank ==================== -->
+  <g transform="translate(400,400)">
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                        from="0 0 0" to="360 0 0" dur="0.8s"/>
+      <circle r="32" fill="none" stroke="#94a3b8" stroke-width="13" stroke-dasharray="3 6.5"/>
+      <circle r="32" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+      <g stroke="#cbd5e1" stroke-width="5" stroke-linecap="round">
+        <line x1="0" y1="0" x2="30" y2="0"/>
+        <line x1="0" y1="0" x2="9.3" y2="28.5"/>
+        <line x1="0" y1="0" x2="-24.3" y2="17.6"/>
+        <line x1="0" y1="0" x2="-24.3" y2="-17.6"/>
+        <line x1="0" y1="0" x2="9.3" y2="-28.5"/>
+      </g>
+      <circle r="6.5" fill="#64748b" stroke="#2f2a3a" stroke-width="3"/>
+      <line x1="0" y1="0" x2="42" y2="0" stroke="#475569" stroke-width="11" stroke-linecap="round"/>
+      <g transform="translate(42,0)">
+        <g>
+          <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+                            from="0 0 0" to="-360 0 0" dur="0.8s"/>
+          <rect x="-14" y="2" width="28" height="9" rx="3" fill="#334155" stroke="#2f2a3a" stroke-width="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============================ near side leg ========================== -->
+  <g>
+    <g>
+      <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+        calcMode="linear" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1"
+        dur="0.8s"
+        values="0 385 250;-5.3 385 250;-9.1 385 250;-10.6 385 250;-7.2 385 250;1.8 385 250;13.4 385 250;25 385 250;35.1 385 250;42.4 385 250;45.5 385 250;43.1 385 250;35.5 385 250;25.2 385 250;15.2 385 250;6.8 385 250;0 385 250"/>
+      <line x1="385" y1="250" x2="357.6" y2="341" stroke="#2f2a3a" stroke-width="37" stroke-linecap="round"/>
+      <line x1="385" y1="250" x2="357.6" y2="341" stroke="#f5a64b" stroke-width="30" stroke-linecap="round"/>
+      <g>
+        <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+          calcMode="linear" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1"
+          dur="0.8s"
+          values="0 357.6 341;15.4 357.6 341;30.3 357.6 341;42 357.6 341;44.9 357.6 341;36.7 357.6 341;22.9 357.6 341;7.6 357.6 341;-7.6 357.6 341;-21.5 357.6 341;-32.8 357.6 341;-40 357.6 341;-41.5 357.6 341;-37 357.6 341;-27.5 357.6 341;-14.7 357.6 341;0 357.6 341"/>
+        <line x1="357.6" y1="341" x2="442" y2="400" stroke="#2f2a3a" stroke-width="31" stroke-linecap="round"/>
+        <line x1="357.6" y1="341" x2="442" y2="400" stroke="#f5a64b" stroke-width="24" stroke-linecap="round"/>
+        <g>
+          <animateTransform repeatCount="indefinite" attributeName="transform" type="rotate"
+            calcMode="linear" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1"
+            dur="0.8s"
+            values="0 442 400;-10.1 442 400;-21.2 442 400;-31.4 442 400;-37.7 442 400;-38.5 442 400;-36.3 442 400;-32.5 442 400;-27.4 442 400;-20.9 442 400;-12.7 442 400;-3.1 442 400;6 442 400;11.8 442 400;12.3 442 400;7.9 442 400;0 442 400"/>
+          <path d="M 430,398 C 426,387 433,379 443,379 L 466,383 C 475,385 475,396 466,399 L 437,404 Z"
+                fill="#f5a64b" stroke="#2f2a3a" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M 455,382 L 462,399 M 443,380 L 449,401" fill="none" stroke="#2f2a3a" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============================== pelican ============================= -->
+  <g>
+    <animateTransform repeatCount="indefinite" attributeName="transform" type="translate"
+      calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"
+      values="0,0; 0,-3; 0,0" dur="0.4s"/>
+
+    <!-- tail -->
+    <path d="M 310,198 C 282,194 250,202 224,220 C 243,225 253,230 261,237
+             C 267,230 277,227 288,230 C 294,237 300,241 312,247 Z"
+          fill="#eef2f7" stroke="#2f2a3a" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M 306,206 L 244,221 M 308,222 L 254,233 M 310,238 L 268,236"
+          fill="none" stroke="#2f2a3a" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- neck (outline pass then fill pass) -->
+    <path d="M 428,196 C 436,168 452,142 470,126" fill="none" stroke="#2f2a3a" stroke-width="36" stroke-linecap="round"/>
+    <path d="M 428,196 C 436,168 452,142 470,126" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round"/>
+
+    <!-- pouch (lower mandible) -->
+    <path d="M 498,130 C 545,136 596,134 620,124 C 610,170 552,182 502,146 Z"
+          fill="#ffbe0b" stroke="#2f2a3a" stroke-width="4" stroke-linejoin="round">
+      <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+        values="M 498,130 C 545,136 596,134 620,124 C 610,170 552,182 502,146 Z;
+                M 498,130 C 545,136 596,134 620,124 C 613,177 549,190 502,146 Z;
+                M 498,130 C 545,136 596,134 620,124 C 610,170 552,182 502,146 Z"/>
+    </path>
+
+    <!-- head -->
+    <circle cx="475" cy="118" r="27" fill="#ffffff" stroke="#2f2a3a" stroke-width="4"/>
+    <!-- upper mandible -->
+    <path d="M 496,100 C 545,98 592,110 620,124 C 596,134 545,136 498,130 Z"
+          fill="#ff9f1c" stroke="#2f2a3a" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M 512,104 C 552,106 588,114 612,124" fill="none" stroke="#e07b00" stroke-width="3" stroke-linecap="round"/>
+    <!-- crest -->
+    <path d="M 456,98 C 448,86 452,76 464,72 M 466,94 C 462,80 468,72 478,70"
+          fill="none" stroke="#2f2a3a" stroke-width="4" stroke-linecap="round"/>
+    <!-- eye -->
+    <ellipse cx="484" cy="110" rx="6" ry="7" fill="#2f2a3a">
+      <animate attributeName="ry" dur="3.6s" repeatCount="indefinite"
+               values="7;7;0.6;7;7" keyTimes="0;0.86;0.9;0.94;1"/>
+    </ellipse>
+    <circle cx="486.5" cy="107" r="2" fill="#ffffff"/>
+
+    <!-- body -->
+    <path d="M 302,238 C 294,206 320,176 358,168 C 400,159 444,180 448,214
+             C 452,246 424,272 386,273 C 344,275 312,264 302,238 Z"
+          fill="#ffffff" stroke="#2f2a3a" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M 320,252 C 348,268 396,268 428,246" fill="none" stroke="#dbe3ec" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- wing: shoulder to the handlebar, scalloped primaries -->
+    <path d="M 344,206 C 386,190 442,194 478,220 C 492,230 502,238 500,248
+             C 496,257 484,258 476,251 C 464,258 452,256 444,253
+             C 434,264 416,266 402,261 C 388,269 368,267 356,257
+             C 346,249 340,237 342,225 C 342,215 342,210 344,206 Z"
+          fill="#eef3f9" stroke="#2f2a3a" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M 352,214 C 392,224 430,238 458,250
+             M 346,232 C 384,244 414,252 436,252
+             M 350,246 C 372,256 390,260 402,261"
+          fill="none" stroke="#c2cedd" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+</svg>
